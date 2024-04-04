@@ -46,13 +46,13 @@ export default function Home() {
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewuser/${user.id}`}
+                    to={`/view-user/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/edituser/${user.id}`}
+                    to={`/edit-user/${user.id}`}
                   >
                     Edit
                   </Link>

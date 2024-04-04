@@ -4,11 +4,12 @@ import { Link, useParams } from "react-router-dom";
 
 export default function Home() {
   const [candles, setCandles] = useState([]);
-
+  const [favoriteCandles, setFavoriteCandles] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     loadCandles();
+    loadFavoriteCandles();
   }, []);
 
   const loadCandles = async () => {
@@ -16,9 +17,19 @@ export default function Home() {
     setCandles(result.data);
   };
 
+  const loadFavoriteCandles = async () => {
+    const result = await axios.get(`http://localhost:8080/user/${id}/favorites`);
+    setFavoriteCandles(result.data);
+  };
+
   const deleteCandle = async (id) => {
     await axios.delete(`http://localhost:8080/candle/${id}`);
     loadCandles();
+  };
+
+  // Function to check if a candle is a favorite for the current user
+  const isFavorite = (candleId) => {
+    return favoriteCandles.some((candle) => candle.id === candleId);
   };
 
   return (
@@ -61,6 +72,8 @@ export default function Home() {
                   >
                     Delete
                   </button>
+                  {/* Check if the candle is a favorite */}
+                  {isFavorite(candle.id) && <span>Favorite</span>}
                 </td>
               </tr>
             ))}

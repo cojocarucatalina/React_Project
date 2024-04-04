@@ -1,0 +1,34 @@
+.custom-btn-orange {
+    color: rgb(255, 102, 0); /* Set text color to orange */
+    border-color: rgb(255, 102, 0); /* Set border color to orange */
+    /*border-radius: 28%;*/
+  }
+  
+  .custom-btn-orange:hover {
+    color: white; /* Set text color to white on hover */
+    background-color: rgb(255, 102, 0); /* Fill with orange on hover */
+    border-color: rgb(255, 102, 0);
+  }
+  .custom-btn-navbar {
+    color: white;
+    background-color: rgb(255, 102, 0);;
+    border-color: rgb(255, 102, 0);
+  }
+  
+  .custom-btn-navbar:hover {
+    color: rgb(255, 102, 0);
+    background-color: white; /* You can adjust the hover color as needed */
+    border-color: rgb(255, 102, 0);
+  }
+
+  .custom-btn-admin {
+    color: rgb(255, 102, 0);
+    background-color: white;
+    border-color: rgb(255, 102, 0);
+  }
+
+  .custom-btn-admin:hover {
+    color: white;
+    background-color: rgb(255, 102, 0);; /* You can adjust the hover color as needed */
+    border-color: rgb(255, 102, 0);
+  }

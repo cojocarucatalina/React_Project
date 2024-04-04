@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
-export default function Welcome() {
+export default function WelcomeCustomer() {
   const [candles, setCandles] = useState([]);
   const { id } = useParams();
 
@@ -19,25 +19,14 @@ export default function Welcome() {
     }
   };
 
-  // const addToCart = async (id) => {
-  //   try {
-  //     await axios.delete(`http://localhost:8080/candles/${id}/add-to-cart`);
-  //     loadCandles();
-  //   } catch (error) {
-  //     console.error("Error adding to cart:", error);
-  //   }
-  // };
-
   const addToCart = async (id) => {
     try {
-      await axios.post(`http://localhost:8080/user/${id}/add-to-cart`, {
-        id: id
-      });
+      await axios.delete(`http://localhost:8080/candles/${id}`);
       loadCandles();
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
-  };  
+  };
 
   return (
     <div className="container">
@@ -69,8 +58,7 @@ export default function Welcome() {
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    // to={`/edit-candle/${candle.id}`}
-                    to={`/customer/${id}/favs`}  //aici ar trebui sa adaug in tabel??
+                    to={`/customer/${id}/favs`} //add candle here 
                   >
                     ❤️
                   </Link>

@@ -1,7 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
-export default function Navbar() {
+import { Link, useParams } from "react-router-dom";
+
+export default function Navbar({index}) {
+ // const { id } = useParams();
+ const [id, setId] = useState(index); // Initialize id state    
+
+ useEffect(() => {
+  // Simulating setting the id from a route parameter
+  setId(id); // Replace "123" with your actual id
+}, []);
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,8 +34,14 @@ export default function Navbar() {
           <Link className="btn btn-outline-light" to="/log-in">
             Log In
           </Link>
-          <Link className="btn btn-outline-light" to="/favs">
+          <Link className="btn btn-outline-light" to="/register">
+            Register
+          </Link>
+          {/* <Link className="btn btn-outline-light" to={`/customer/${id}/favs`}>
           ❤️
+          </Link> */}
+          <Link className="btn btn-outline-light" to="/to-cart">
+            My Cart
           </Link>
           {/* <Link className="btn btn-outline-light" to="/to-cart">
             My Cart
