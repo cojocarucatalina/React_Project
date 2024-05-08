@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --background-color: white;
+  --foreground-color: pink;
+  --primary-text-color: black;
+  --secondary-text-color: white;
+  --toggle-bg: #85827d;
+  --toggle-fg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --background-color: black;
+  --foreground-color: white;
+  --primary-text-color: white;
+  --secondary-text-color: pink;
+  --toggle-bg: #444a69;
+  --toggle-fg: #030514;
+}
+
+[data-theme="dark"] body,
+[data-theme="dark"] code {
+  color: var(--primary-text-color);
+}
+
+[data-theme="dark"] body {
+  background-color: var(--background-color);
+}
+
+[data-theme="dark"] code {
+  background-color: var(--foreground-color);
+}
+
+[data-theme="dark"] a {
+  color: var(--secondary-text-color);
+}
+
+[data-theme="dark"] a:hover {
+  color: var(--foreground-color);
+}
+
+[data-theme="dark"] .toggle {
+  background-color: var(--toggle-bg);
+  color: var(--toggle-fg);
+}
+
+
+.chat-messages {
+  overflow-y: auto; 
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; 
+}
+
+.message-data {
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%; 
+  background-color: #b0caf5; /* Add background color */
+
+}
+
+
+.avatar {
+  width: 30px; /* Adjust width of avatar */
+  height: 30px; /* Adjust height of avatar */
+  margin-right: 10px; /* Add margin to avatar */
+}
+
+.message.self .message-data {
+  background-color: #aaffaa; /* Background color for self messages */
+   margin-left: auto; /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Align self messages to the right */
+}
+
+
+/* .message .avatar.self {
+  order: 2; 
+} */
+
+.message .avatar {
+  order: 1; /* Set order for avatars */
+}
+
+.message.self .avatar {
+  order: 3; 
+}
+
+.send-message {
+  margin-top: 10px; /* Add margin to send message input */
+}
+
+.member-list {
+  border-right: 1px solid #ccc; /* Add border to separate member list */
+}
+
+.chat-content {
+  padding: 10px; /* Add padding to chat content */
+  width: calc(100% - 200px); /* Calculate width based on member list width */
+}
+
+
+/* NAVBAR BUTTONS */
+
+.send-button {
+  width: 150px;
+  height: 30px;
+  background-image: linear-gradient(90deg, #00bfff75 0%, #ffd00067 49%, #fc4f4f67 80%, #00bfff70 100%);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: #FFF;
+  margin: auto;
+}
+
+.send-button:hover {
+  animation: slidebg 2s linear infinite;
+}
+
+.send-button:after {
+  content: attr(alt);
+  width: 150px;
+  height: 50px;
+  background-color: #1919191a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: width 0.3s;
+}
+
+@keyframes slidebg {
+  to {
+    background-position: 150px;
+  }
+}
+
+.send-button:hover:after {
+  width: 0;
+}
+
+
+
+.send-button,
+.btn.btn-outline-light {
+  width: 150px;
+  height: 50px;
+  border:  2px solid #006181cf; 
+  background-image: linear-gradient(90deg, #00bfff72 0%, #ffd0006a 49%, #fc4f4f6b 80%, #00bfff6a 100%); 
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: lowercase;
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: #006181cf; 
+  margin: auto;
+  transition: background-image 0.3s, color 0.3s; 
+}
+
+.send-button:hover,
+.btn.btn-outline-light:hover {
+  border:  2px solid #006181cf; 
+  text-transform: uppercase;
+  color: #015672fd; 
+  animation: slidebg 2s linear infinite;
+}
+
+.send-button:after,
+.btn.btn-outline-light:after {
+  content: attr(alt);
+  width: 100px;
+  height: 30px;
+  background-color: #fc4f4f6b; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: width 0.3s;
+  z-index: -1; 
+}
+
+.send-button:hover:after,
+.btn.btn-outline-light:hover:after {
+  width: 0;
+}
+
+
+/* de aici incepe home button pe Nav*/
+
+.custom-brand-style {
+  font-size: 24px;
+  font-weight: bold; 
+  color: #006181cf; 
+  text-decoration: none;
+}
