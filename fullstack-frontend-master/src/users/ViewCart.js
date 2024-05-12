@@ -127,6 +127,12 @@ export default function ViewCart() {
             ))}
           </tbody>
         </table>
+        <Link
+        className="btn btn-outline-primary mx-2"
+        to={`/customer/${id}/home`}
+        >
+        All products
+        </Link>
       </div>
     </div>
   );

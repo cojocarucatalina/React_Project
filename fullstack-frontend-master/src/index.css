@@ -25,7 +25,7 @@ code {
 }
 
 [data-theme="dark"] {
-  --background-color: black;
+  --background-color: rgba(37, 37, 37, 0.812);
   --foreground-color: white;
   --primary-text-color: white;
   --secondary-text-color: pink;

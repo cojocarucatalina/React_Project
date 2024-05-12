@@ -134,7 +134,6 @@ export default function Navbar() {
 
   const renderAddingCandle = () => {
 
-    // If the current route is "/admin", render the "Add new candle" button
     if (location.pathname === "/admin") {
       return (
         <Link className="btn btn-outline-light" to={`/customer/admin/add-candle`}>
@@ -142,13 +141,12 @@ export default function Navbar() {
         </Link>
       );
     }
-    // Otherwise, don't render anything
     return null;
   };
 
+
   const renderUserActivity = () => {
 
-    // If the current route is "/admin", render the "Add new candle" button
     if (location.pathname === "/admin") {
       return (
         <Link className="btn btn-outline-light" to={`/customer/admin/user-activity`}>
@@ -156,7 +154,6 @@ export default function Navbar() {
         </Link>
       );
     }
-    // Otherwise, don't render anything
     return null;
   };
 
@@ -173,6 +170,100 @@ export default function Navbar() {
       );
     }
     // Otherwise, don't render anything
+    return null;
+  };
+
+  const renderAdminProfile = () => {
+
+    if (location.pathname === "/admin") {
+      return (
+        <Link className="btn btn-outline-light" to={`/admin/profile`}>
+          Profile
+        </Link>
+      );
+    }
+    if (location.pathname === "/customer") {
+      return (
+        <Link className="btn btn-outline-light" to={`/${id}/profile`}>
+          Profile
+        </Link>
+      );
+    }
+    return null;
+  };
+
+  const renderLogout = () => {
+    if (location.pathname === "/undefined") {
+      return null;
+    }
+    if (location.pathname === "/log-in") {
+      return null;
+    }
+    if (location.pathname === "/home") {
+      return null;
+    }
+    return (
+      <Link className="btn btn-outline-light" to={`/home`}>
+        LogOut
+      </Link>
+    );
+  };
+
+  const renderLogIn = () => {
+
+    const customerId = location.pathname.split('/').pop();
+  
+    if (location.pathname.startsWith("/customer/") || location.pathname.startsWith("/admin")) {
+      return null;
+    }
+  
+    return (
+      <Link className="btn btn-outline-light" to={`/log-in`}>
+        LogIn
+      </Link>
+    );
+  };
+
+  const renderRegister = () => {
+
+    const customerId = location.pathname.split('/').pop();
+  
+    if (location.pathname.startsWith("/admin")) {
+      return (
+        <Link className="btn btn-outline-light" to={`/register`}>
+          Add user
+        </Link>
+      );
+    }
+  
+    return null;
+  };
+
+
+  
+  const renderAdminCandles = () => {
+
+    if (location.pathname === "/admin") {
+      return (
+        <Link className="btn btn-outline-light" to={`/admin/home`}>
+          XML
+        </Link>
+      );
+    }
+
+    return null;
+  };
+
+  const renderAdminFavorites = () => {
+
+    if (location.pathname.startsWith("/customer")) {
+      return (
+        <Link className="btn btn-outline-light" to={`/customer/${id}/favs`}>
+          Favorites
+        </Link>
+      );
+    }
+
     return null;
   };
   
@@ -196,21 +287,35 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+          {renderLogIn()}
+{/* 
           <Link className="btn btn-outline-light" to="/log-in">
             Log In
-          </Link>
-          <Link className="btn btn-outline-light" to="/register">
+          </Link> */}
+
+          {renderRegister()}
+          {/* <Link className="btn btn-outline-light" to="/register">
             Register
-          </Link>
-          <Link className="btn btn-outline-light" to="/home" onClick={() => addToHistory(id)} onClick1={() => alert("Are you sure?")}>
+          </Link> */}
+          {renderAdminCandles()}
+
+          {renderLogout()}
+          {/* <Link className="btn btn-outline-light" to="/home" onClick={() => addToHistory(id)} onClick1={() => alert("Are you sure?")}>
             Log Out
-          </Link>
-          <Link className="btn btn-outline-light" to={`/customer/${id}/favs`}>
+          </Link> */}
+
+          {renderAdminFavorites()}
+          {/* <Link className="btn btn-outline-light" to={`/customer/${id}/favs`}>
             Favorites
-          </Link>
+          </Link> */}
+
           <Link className="btn btn-outline-light" to={`/customer/${id}/chat`}>
             ChatRoom
           </Link>
+          {/* {renderAdminProfile()} */}
+           <Link className="btn btn-outline-light" to={`/customer/${id}/profile`}>
+            Profile
+          </Link> 
           {/* Render the "To Cart" button based on the current route */}
           {renderToCartButton()}
           {renderAddingCandle()}

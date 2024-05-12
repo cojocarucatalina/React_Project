@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useLocalStorage from "use-local-storage";
+//import background from "./img/candle.png";
 import background from "./img/candle.png";
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
@@ -10,11 +11,16 @@ import './index.css';
 import NavCustomer from "./layout/NavCustomer";
 import ViewCart from "./users/ViewCart";
 
+import CardPayment from "./pay/CardPayment";
+import Receipt from "./pay/Receipt";
+
 import ChatRoom1 from "./ws/ChatRoom1";
 import ChatRoom2 from "./ws/ChatRoom2";
 
 import fe from "./ws/fe";
 import Payment from "./pay/Payment";
+
+import ForgotPassword from "./pages/ForgotPassword";
 
 import ViewFav from "./users/ViewFav";
 import AddCandle from "./candles/AddCandle";
@@ -22,10 +28,13 @@ import { SearchBar } from "./search/SearchBar";
 import { SearchResultList } from "./search/SearchResultList";
 
 import NavAdmin from "./layout/Navbar";
+import ImageUpload from "./users/ImageUpload";
 
 import Home from "./pages/Home";
 
 import Welcome from "./pages/Welcome";
+import Welcome1 from "./pages/Welcome1";
+
 import WelcomeCustomer from "./pages/WelcomeCustomer";
 import AddUser from "./users/AddUser";
 import Register from "./users/Register";
@@ -85,6 +94,7 @@ function App() {
         </div>
         <Routes>
           <Route exact path="/home" element={<Welcome />} />
+          <Route exact path="/admin/home" element={<Welcome1 />} />
           <Route exact path="/" element={<Welcome />} />
           <Route exact path="/add-user" element={<AddUser />} />
 
@@ -121,6 +131,9 @@ function App() {
           <Route exact path="/customer/:id/to-cart" element={<ViewCart />} />
 
           <Route exact path="/customer/:id/payment" element={<Payment />} />
+          <Route exact path="/customer/:id/payment-card" element={<CardPayment />} /> 
+          <Route exact path="/customer/:id/payment-cash" element={<Receipt />} />
+
 
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
 
@@ -130,6 +143,9 @@ function App() {
           <Route path="/customer/admin/add-candle" element={<Navigate to="/admin/add-candle" />} />
 
           <Route exact path="/customer/:id/favs" element={<ViewFav />} /> 
+
+          <Route exact path="/customer/:id/home" element={<WelcomeCustomer />} /> 
+
           {/* <Route exact path="/customer/:id/chat" element={<ChatRoom1 />} />  */}
           <Route exact path="/customer/:id/chat" element={<ChatRoom2 />} /> 
           <Route exact path="/customer/admin/chat" element={<ChatRoom2 />} />
@@ -138,7 +154,15 @@ function App() {
 
           <Route exact path="/customer/admin/user-activity" element={<UserActivity /> } />
 
+          <Route exact path="/admin/profile" element={<ImageUpload />}/>
+          <Route exact path="/customer/:id/profile" element={<ImageUpload />}/>
+
+          <Route exact path="/customer/admin/profile" element={<ImageUpload />}/>
+
+          <Route exact path="/customer/undefined/profile" element={<ToCart />}/> 
           
+          <Route exact path="/forgot-password" element={<ForgotPassword />}/> 
+
         </Routes>
       </Router>
 

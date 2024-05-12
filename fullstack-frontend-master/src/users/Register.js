@@ -18,11 +18,31 @@ export default function AddUser() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    await axios.post("http://localhost:8080/user", user);
-    navigate("/");
-  };
+  
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   await axios.post("http://localhost:8080/user", user);
+  //   navigate("/");
+  // };
+
+const onSubmit = async (e) => {
+  e.preventDefault();
+  const randomPassword = generateRandomPassword(10); // Generating random password
+  const userWithRandomPassword = { ...user, password: randomPassword };
+  await axios.post("http://localhost:8080/user", userWithRandomPassword);
+  navigate("/");
+};
+
+// Function to generate a random string of specified length
+const generateRandomPassword = (length) => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  let randomPassword = '';
+  for (let i = 0; i < length; i++) {
+    randomPassword += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return randomPassword;
+};
+
 
   return (
     <div className="container">

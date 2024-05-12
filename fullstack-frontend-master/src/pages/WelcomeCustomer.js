@@ -171,17 +171,14 @@ export default function WelcomeCustomer() {
   
   const addToCart = async (candleId, candleModel) => {
     try {
-      // Construct the favorite object to be added
       const newFavorite = {
         userId: id,
         candleId: candleId,
         candleModel: candleModel
       };
 
-      // Make a POST request to add the candle to the user's favorites
       await axios.post("http://localhost:8080/cart", newFavorite);
       
-      // Reload candles after adding to favorites
       loadCandles();
     } catch (error) {
       console.error("Error adding to cart:", error);

@@ -64,12 +64,19 @@ export default function ViewFav() {
                     onClick={() => addToCart(favorite.id)}
                   >
                     To Cart
-                  </button>
+                  </button>  
+                 
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <Link
+        className="btn btn-outline-primary mx-2"
+        to={`/customer/${id}/home`}
+        >
+        All products
+        </Link>
       </div>
     </div>
   );

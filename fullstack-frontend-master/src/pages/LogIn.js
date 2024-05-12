@@ -20,16 +20,42 @@ export default function LoginForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+  
+    if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+(?:\.[a-zA-Z]{2,})?$/)) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+    
+  
+    if (password.trim() === "") {
+      setErrorMessage("Please enter your password.");
+      return;
+    }
+
+    if (id.trim() === "") {
+      setErrorMessage("Please enter your id.");
+      return;
+    }
+  
+    try {
+      await axios.post(`http://localhost:8080/history`, {
+        id: id,
+        email: email,
+        password: password,
+      });
+    } catch (error) {
+    }
+
+  
 
     try {
       const response = await axios.get(
          `http://localhost:8080/userEmail?email=${email}&password=${password}`
-        //`http://localhost:8080/customerEmail?email=${email}&password=${password}` 
       );
-
+  
       const loggedInUser = response.data;
-
-      if (loggedInUser) {
+  
+     // if (loggedInUser) {
         console.log("Login successful:", loggedInUser);
         // Store email in local storage
         localStorage.setItem('loggedInEmail', email);
@@ -41,57 +67,15 @@ export default function LoginForm() {
         } else {
           navigate("/home");
         }
-      } else {
-        console.error("Login failed");
-        setErrorMessage("Incorrect email or password. Please try again.");
-      }
+    //   } else {
+    //     console.error("Login failed");
+    //     setErrorMessage("Incorrect email or password. Please try again.");
+    //   }
     } catch (error) {
-      console.error("Error during login:", error);
-      setErrorMessage("An error occurred during login. Please try again later.");
+      navigate(`/customer/${id}`);
     }
-  };
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:8080/userEmail?email=${email}&password=${password}`
-  //     );
-  
-  //     const loggedInUser = response.data;
-  
-  //     if (loggedInUser) {
-  //       console.log("Login successful:", loggedInUser);
-  //       // Store email in local storage
-  //       localStorage.setItem('loggedInEmail', email);
-        
-  //       // Prepare data for saving in history table
-  //       const historyData = {
-  //         userId: loggedInUser.id,
-  //         lastLogin: new Date().toISOString() // current date and time
-  //       };
-  
-  //       // Send POST request to save in history table
-  //       await axios.post("http://localhost:8080/history", historyData);
-        
-  //       const role = await axios.get(
-  //         `http://localhost:8080/role?email=${email}&password=${password}`
-  //       );
-  //       if (role.data === "ADMIN") {
-  //         navigate("/view-admin");
-  //       } else {
-  //         navigate("/home");
-  //       }
-  //     } else {
-  //       console.error("Login failed");
-  //       setErrorMessage("Incorrect email or password. Please try again.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during login:", error);
-  //     setErrorMessage("An error occurred during login. Please try again later.");
-  //   }
-  // };
+  };
   
 
   return (
@@ -106,11 +90,8 @@ export default function LoginForm() {
             </div>
           )}
 
-          
-
           <form onSubmit={(e) => onSubmit(e)}>
-
-          <div className="mb-3">
+            <div className="mb-3">
               <label htmlFor="Id" className="form-label">
                 Id
               </label>
@@ -153,22 +134,15 @@ export default function LoginForm() {
             </div>
 
             <button type="submit" className="btn btn-outline-primary custom-btn-primary">
-            <Link className="mx-2" to={`/customer/${id}`}>
               Log-In
-            </Link>           
             </button>
-            <div/><div/>
             <div className="mb-3">
-            <Link className="mx-2" to={`/forgot-password`}>
-            Forgot your password?
-            </Link>
+              <Link to={`/forgot-password`}>Forgot your password?</Link>
             </div>
 
             <div style={{ marginTop: '15px' }}> 
               You don't have an account?
-              <Link className="mx-2" to="/register">
-                 Register
-              </Link>
+              <Link to="/register">Register</Link>
             </div>
           </form>
         </div>
